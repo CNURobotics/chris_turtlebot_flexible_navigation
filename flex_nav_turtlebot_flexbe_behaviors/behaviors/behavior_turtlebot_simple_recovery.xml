@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="Turtlebot Simple Recovery">
+
+	<executable package_path="behavior_turtlebot_simple_recovery.turtlebot_simple_recovery_sm" class="TurtlebotSimpleRecoverySM" />
+	<tagstring>recovery</tagstring>
+	<author>Justin Willis</author>
+	<date>Mon Jan 09 2017</date>
+	<description>
+		Stops the robot, clears the cost map and backs up
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

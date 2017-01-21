@@ -1,0 +1,6 @@
+<launch>
+    <arg name="robot_namespace"   default="turtlebot"/>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find flex_nav_turtlebot_bringup)/param/$(arg robot_namespace)_flex_nav.rviz"/>
+
+</launch>
