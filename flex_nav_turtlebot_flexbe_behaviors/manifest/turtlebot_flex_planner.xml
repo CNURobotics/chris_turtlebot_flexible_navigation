@@ -2,12 +2,12 @@
 
 <behavior name="Turtlebot Flex Planner">
 
-	<executable package_path="behavior_turtlebot_flex_planner.turtlebot_flex_planner_sm" class="TurtlebotFlexPlannerSM" />
+	<executable package_path="flex_nav_turtlebot_flexbe_behaviors.turtlebot_flex_planner_sm" class="TurtlebotFlexPlannerSM" />
 	<tagstring>Flex_Nav</tagstring>
 	<author>Josh Cohen</author>
 	<date>Mon Jan 09 2017</date>
 	<description>
-		Uses Flexible Navigation to control the robot
+		Uses Flexible Navigation to control the Turtlebot robot
 	</description>
 
 

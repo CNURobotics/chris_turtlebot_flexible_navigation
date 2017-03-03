@@ -10,8 +10,11 @@
   <buildtool_depend>catkin</buildtool_depend>
 
   <run_depend>rospy</run_depend>
-  <run_depend>behavior_turtlebot_flex_planner</run_depend>
-  <run_depend>behavior_turtlebot_simple_recovery</run_depend>
+  <run_depend>flex_nav_flexbe_states</run_depend>
+  <run_depend>flex_nav_turtlebot_flexbe_states</run_depend>
 
-  <!-- Add here all ROS packages that contain behaviors -->
+  <export>
+    <flexbe_behaviors />
+  </export>
+
 </package>

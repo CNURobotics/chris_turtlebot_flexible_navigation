@@ -18,21 +18,9 @@ This package has a number of dependencies.  The quickest, and easiest method to 
 * This will install the entire system in a new workspace. Once you build, you can run the Gazebo simulation based demonstration described below.
 * For this system, you need to run `./rosinstall/install_scripts/install_chris_turtlebot.sh` from the root workspace.
 
-3) Make sure the [FlexBE System], which will be installed as part of the [CHRISLab Installation], is properly set up.  It requires the [FlexBE App Installation] into the Chromium browser.
+3) Make sure the [FlexBE System], which will be installed as part of the [CHRISLab Installation], is properly set up.  
 
-4) [FlexBE] must be configured to point to the proper repos after the [CHRISLab Installation] is complete and built.
- This configuration can be completed once FlexBE is started below.
-
- * Workspace
-  * Behaviors Folder: `~/CHRISLab/src/chris_turtlebot_flexible_navigation/flex_nav_turtlebot_behaviors`
-  * flexbe_behaviors: `~/CHRISLab/src/chris_turtlebot_flexible_navigation/flex_nav_turtlebot_flexbe_behaviors`
-
- * State Libraries
-  * `~/CHRISLab/src/flexbe_behavior_engine/flexbe_states/src/flexbe_states`
-  * `~/CHRISLab/src/generic_flexbe_states/flexbe_navigation_states/src/flexbe_navigation_states`
-  * `~/CHRISLab/src/generic_flexbe_states/flexbe_utility_states/src/flexbe_utility_states`
-  * `~/CHRISLab/src/flexible_navigation/flex_nav_flexbe_states/src/flex_nav_flexbe_states`
-  * `~/CHRISLab/src/chris_turtlebot_flexible_navigation/flex_nav_turtlebot_flexbe_states/src/flex_nav_turtlebot_flexbe_states`
+ This version presumes use of the [FlexBE App] for the user interface, which depends on states and behaviors that are exported as part of individual package.xml.
 
 
 ## Operation
@@ -42,19 +30,19 @@ The following directions are for a simple demonstration on a single ROS network.
 
 `roscore`
  * Required for ROS network
- * Start a separate ROS core to simplify startup and re-running nodes as needed
+ * Starts a separate ROS core to simplify startup and re-running nodes as necessary
 
 
 ### Start the simulated robot
 
 
  `roslaunch chris_world_models gazebo_simple_creech_world.launch`
- * This is a simple world with obstacles; not robots are included.
+ * This is a simple world with obstacles; no robots are included.
  * Other launch files include the Willow Garage office model
 
  `roslaunch chris_turtlebot_bringup chris_turtlebot_gazebo.launch`
  * Starts the simulated CHRISlab Turtlebot with a Hokuyo URG-04LX Lidar and Kinect 3D Sensor
- * Places the simulated robot in existing Gazebo simulation that must be started first.
+ * Places the simulated robot in an existing Gazebo simulation that must be started first.
 
 
 ### Start localization
@@ -62,13 +50,18 @@ The following directions are for a simple demonstration on a single ROS network.
  There are several options; choose one:
 
 
+ `roslaunch chris_turtlebot_navigation fake_creech_sim.launch`
+  * This launches a fake localization with the Creech world map
+  * Localization assumes ground truth from the simulation
+
  `roslaunch chris_turtlebot_navigation fake_localization_demo.launch`
-  * This launches a fake localization with empty mapping
+  * This launches a fake localization with a defined map  (default: CHRIS_TURTLEBOT_MAP_FILE environment variable is empty map)
+  * Localization assumes ground truth from the simulation
 
  `roslaunch chris_turtlebot_navigation amcl*.launch`
   * AMCL uses Adaptive Monte Carlo Localization with respect to a known map
-  * Use the launch file with map corresponding to the Gazebo world (maps are located in common chris_world_models package)
-  * For Creech world use `roslaunch chris_turtlebot_navigation amcl_creech_world.launch`
+  * Uses the launch file with a map corresponding to the Gazebo world (maps are located in common chris_world_models package)
+  * For example, to launch with the Creech world map use `roslaunch chris_turtlebot_navigation amcl_creech_world.launch`
 
 
   `roslaunch chris_turtlebot_navigation gmapping_demo.launch`
@@ -80,12 +73,12 @@ The following directions are for a simple demonstration on a single ROS network.
 ### Visualization
 
  `roslaunch flex_nav_turtlebot_bringup turtlebot_flex_nav_rviz.launch`
-  * A standard view of Turtlebot and sensor data, with maps, and paths displayed
+  * Displays a standard view of Turtlebot and sensor data, with maps, and paths displayed
   * Topic names are customized in this configuration to match this demo
 
 ### Startup of Flexible Navigation
 
-Start both planning and control nodes, and the FlexBE behavior engine
+Flexible Navigation requires startup of planning and control nodes, as well as the FlexBE behavior engine and UI.
 
 `roslaunch flex_nav_turtlebot_bringup flex.launch`
  * This starts the planning and control nodes.
@@ -93,17 +86,18 @@ Start both planning and control nodes, and the FlexBE behavior engine
   * Only a simple set of SBPL motion primitives is included in this version, and will be refined in the future.
 
 `roslaunch flex_nav_turtlebot_flexbe_behaviors flex_nav_turtlebot_behavior_testing.launch`
-  * This starts the FlexBE engine and FlexBE UI (Chromium App)
+  * This starts the FlexBE engine and FlexBE App UI
   * Load the `FlexPlanner` behavior
 
 
 These launch files may also be used with different `robot_namespaces`; different namespaces require different ports to be specified for `flex_nav_turtlebot_behavior_testing.launch`.
 
 
-After start up, all control is through the FlexBE UI.  Load the `Turtlebot Flex Planner` behavior, and run.  The system asks for a 2D Nav Pose input via RViz, and then asks for confirmation of the initial global plan.  If the supervisor chooses to execute the plan, the state transitions to a concurrent node that uses an online multilayer planner to refine the plans as the robot moves, and also monitors the Create bumper status for collision.
+After startup, all control is through the FlexBE App user interface.  Load the `Turtlebot Flex Planner` behavior, and run.  The system asks for a 2D Nav Pose input via RViz, and then asks for confirmation of the initial global plan.  If the supervisor chooses to execute the plan, the state transitions to a concurrent node that uses an online multilayer planner to refine the plans as the robot moves, and also monitors the Turtlebot bumper status for collision.
 
 [ROS]: http://www.ros.org
 [FlexBE]: https://flexbe.github.io
+[FlexBE App]: https://github.com/FlexBE/flexbe_app
 [Flexible Navigation]: https://github.com/CNURobotics/flexible_navigation
 [Wiki]: http://wiki.ros.org/flexible_navigation
 [CHRISLab Turtlebot]: https://github.com/CNURobotics/chris_ros_turtlebot

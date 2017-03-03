@@ -1,0 +1,6 @@
+path: flex_nav_turtlebot_flexbe_states.turtlebot_status_state
+class: TurtlebotStatusState
+
+import_only: true
+
+outcome: done

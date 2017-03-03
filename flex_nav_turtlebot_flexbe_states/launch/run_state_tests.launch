@@ -1,0 +1,10 @@
+<launch>
+        <arg name="path" value="$(find flex_nav_turtlebot_flexbe_states)/tests" />
+
+        <include file="$(find flexbe_testing)/launch/flexbe_testing.launch">
+                <arg name="compact_format" value="true" />
+                <arg name="testcases" value="
+                        $(arg path)/turtlebot_status_state.test
+                " />
+        </include>
+</launch>

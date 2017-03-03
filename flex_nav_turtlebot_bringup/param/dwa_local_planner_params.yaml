@@ -1,6 +1,6 @@
 DWAPlannerROS:
 
-# Robot Configuration Parameters - Create
+# Robot Configuration Parameters - Turtlebot
   max_vel_x: 0.35  # slower than max for now
   min_vel_x: 0.0
 

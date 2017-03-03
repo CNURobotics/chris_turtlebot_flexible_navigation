@@ -3,14 +3,9 @@
 <launch>
 
   <arg name="ns" default="turtlebot"/>
-  <arg name="port" default="9090" />
 
   <group ns="$(arg ns)">
-  	<include file="$(find flexbe_widget)/launch/behavior_ocs.launch">
-  		<arg name="ns" value="$(arg ns)" />
-  		<arg name="port" value="$(arg port)" />
-      <arg name="behaviors_package" value="flex_nav_turtlebot_flexbe_behaviors" />
-  	</include>
+    <include file="$(find flexbe_app)/launch/flexbe_ocs.launch"/>
 
     <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch">
       <arg name="behaviors_package" value="flex_nav_turtlebot_flexbe_behaviors" />

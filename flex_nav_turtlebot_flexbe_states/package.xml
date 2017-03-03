@@ -13,4 +13,9 @@
 	<run_depend>geometry_msgs</run_depend>
 	<run_depend>flexbe_msgs</run_depend>
 	<run_depend>flexbe_core</run_depend>
+
+	<export>
+	    <flexbe_states />
+	</export>
+
 </package>
