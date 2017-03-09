@@ -50,7 +50,7 @@ class TurtlebotFlexPlannerSM(Behavior):
 
 
     def create(self):
-        # x:602 y:39, x:193 y:344
+        # x:839 y:185, x:1163 y:18
         _state_machine = OperatableStateMachine(outcomes=['finished', 'failed'])
 
         # Additional creation code can be added inside the following tags
@@ -90,20 +90,20 @@ class TurtlebotFlexPlannerSM(Behavior):
                                         transitions={'done': 'Receive Goal', 'failed': 'failed'},
                                         autonomy={'done': Autonomy.Off, 'failed': Autonomy.Off})
 
-            # x:215 y:179
+            # x:206 y:179
             OperatableStateMachine.add('Receive Path',
                                         GetPathState(planner_topic="high_level_planner"),
-                                        transitions={'planned': 'Operator Action', 'empty': 'Continue', 'failed': 'Continue'},
-                                        autonomy={'planned': Autonomy.Off, 'empty': Autonomy.Off, 'failed': Autonomy.Off},
+                                        transitions={'planned': 'ExecutePlan', 'empty': 'Continue', 'failed': 'Continue'},
+                                        autonomy={'planned': Autonomy.Off, 'empty': Autonomy.Low, 'failed': Autonomy.Low},
                                         remapping={'goal': 'goal', 'plan': 'plan'})
 
-            # x:210 y:282
-            OperatableStateMachine.add('Operator Action',
-                                        OperatorDecisionState(outcomes=["yes","no"], hint=None, suggestion=None),
+            # x:194 y:274
+            OperatableStateMachine.add('ExecutePlan',
+                                        OperatorDecisionState(outcomes=["yes","no"], hint="Execute the current plan?", suggestion="yes"),
                                         transitions={'yes': 'Container', 'no': 'Continue'},
-                                        autonomy={'yes': Autonomy.Off, 'no': Autonomy.Off})
+                                        autonomy={'yes': Autonomy.High, 'no': Autonomy.Full})
 
-            # x:397 y:272
+            # x:406 y:270
             OperatableStateMachine.add('Container',
                                         _sm_container_0,
                                         transitions={'finished': 'Log Success', 'failed': 'New Plan', 'danger': 'Log Fail'},
@@ -112,14 +112,14 @@ class TurtlebotFlexPlannerSM(Behavior):
 
             # x:395 y:102
             OperatableStateMachine.add('Continue',
-                                        OperatorDecisionState(outcomes=["yes","no","recover"], hint=None, suggestion=None),
-                                        transitions={'yes': 'Receive Goal', 'no': 'finished', 'recover': 'Turtlebot Simple Recovery'},
-                                        autonomy={'yes': Autonomy.Off, 'no': Autonomy.Off, 'recover': Autonomy.Off})
+                                        OperatorDecisionState(outcomes=["yes","no","recover"], hint="Continue planning to new goal?", suggestion="yes"),
+                                        transitions={'yes': 'Receive Goal', 'no': 'finished', 'recover': 'LogRecovery'},
+                                        autonomy={'yes': Autonomy.High, 'no': Autonomy.Full, 'recover': Autonomy.Full})
 
-            # x:724 y:324
+            # x:1036 y:232
             OperatableStateMachine.add('Turtlebot Simple Recovery',
                                         self.use_behavior(TurtlebotSimpleRecoverySM, 'Turtlebot Simple Recovery'),
-                                        transitions={'finished': 'Log Recovered', 'failed': 'failed'},
+                                        transitions={'finished': 'AutoReplan', 'failed': 'failed'},
                                         autonomy={'finished': Autonomy.Inherit, 'failed': Autonomy.Inherit})
 
             # x:414 y:182
@@ -128,31 +128,49 @@ class TurtlebotFlexPlannerSM(Behavior):
                                         transitions={'done': 'Continue'},
                                         autonomy={'done': Autonomy.Off})
 
-            # x:576 y:299
+            # x:586 y:274
             OperatableStateMachine.add('Log Fail',
-                                        LogState(text="Starting recovery behavior", severity=Logger.REPORT_HINT),
-                                        transitions={'done': 'Turtlebot Simple Recovery'},
+                                        LogState(text="Path execution failure", severity=Logger.REPORT_HINT),
+                                        transitions={'done': 'Recover'},
                                         autonomy={'done': Autonomy.Off})
 
-            # x:769 y:183
+            # x:960 y:70
             OperatableStateMachine.add('Log Recovered',
-                                        LogState(text="Recovery finished", severity=Logger.REPORT_HINT),
+                                        LogState(text="Re-plan after recovery", severity=Logger.REPORT_HINT),
                                         transitions={'done': 'New Plan'},
                                         autonomy={'done': Autonomy.Off})
 
-            # x:777 y:7
+            # x:772 y:71
             OperatableStateMachine.add('New Plan',
                                         GetPathState(planner_topic="high_level_planner"),
                                         transitions={'planned': 'Container', 'empty': 'Receive Goal', 'failed': 'Continue'},
                                         autonomy={'planned': Autonomy.Off, 'empty': Autonomy.Off, 'failed': Autonomy.Off},
                                         remapping={'goal': 'goal', 'plan': 'plan'})
 
-            # x:209 y:26
+            # x:206 y:72
             OperatableStateMachine.add('Receive Goal',
                                         GetPoseState(topic='flex_nav_global/goal'),
                                         transitions={'done': 'Receive Path'},
-                                        autonomy={'done': Autonomy.Off},
+                                        autonomy={'done': Autonomy.Low},
                                         remapping={'goal': 'goal'})
+
+            # x:709 y:273
+            OperatableStateMachine.add('Recover',
+                                        OperatorDecisionState(outcomes=["yes","no"], hint="Should we attempt recovery?", suggestion="yes"),
+                                        transitions={'yes': 'LogRecovery', 'no': 'finished'},
+                                        autonomy={'yes': Autonomy.High, 'no': Autonomy.Full})
+
+            # x:887 y:236
+            OperatableStateMachine.add('LogRecovery',
+                                        LogState(text="Starting recovery behavior", severity=Logger.REPORT_HINT),
+                                        transitions={'done': 'Turtlebot Simple Recovery'},
+                                        autonomy={'done': Autonomy.Off})
+
+            # x:973 y:159
+            OperatableStateMachine.add('AutoReplan',
+                                        OperatorDecisionState(outcomes=["yes","no"], hint="Re-plan to current goal?", suggestion=None),
+                                        transitions={'yes': 'Log Recovered', 'no': 'Continue'},
+                                        autonomy={'yes': Autonomy.High, 'no': Autonomy.Full})
 
 
         return _state_machine
