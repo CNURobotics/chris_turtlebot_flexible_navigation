@@ -1,7 +1,7 @@
 DWAPlannerROS:
 
 # Robot Configuration Parameters - Turtlebot
-  max_vel_x: 0.35  # slower than max for now
+  max_vel_x: 0.25 # slower than max for now
   min_vel_x: 0.0
 
   max_vel_y: 0.0  # diff drive robot
@@ -15,8 +15,8 @@ DWAPlannerROS:
   #   do not set min_trans_vel to 0.0 otherwise dwa will always think translational velocities
   #   are non-negligible and small in place rotational velocities will be created.
 
-  max_rot_vel: 5.0  # choose slightly less than the base's capability
-  min_rot_vel: 0.4  # this is the min angular velocity when there is negligible translational velocity
+  max_rot_vel: 3.14  # choose slightly less than the base's capability
+  min_rot_vel: 0.10  # this is the min angular velocity when there is negligible translational velocity
   rot_stopped_vel: 0.4
 
   acc_lim_x: 1.0 # maximum is theoretically 2.0, but we
@@ -30,15 +30,15 @@ DWAPlannerROS:
 
 # Forward Simulation Parameters
   sim_time:   2.0     # 1.7
-  vx_samples: 6       # 3
+  vx_samples: 20      # 3
   vy_samples: 1       # diff drive robot, there is only one sample
-  vtheta_samples: 20  # 20
+  vtheta_samples: 30  # 20
 
 # Trajectory Scoring Parameters
   path_distance_bias: 64.0      # 32.0   - weighting for how much it should stick to the global path plan
   goal_distance_bias: 24.0      # 24.0   - wighting for how much it should attempt to reach its goal
-  occdist_scale: 0.5            # 0.01   - weighting for how much the controller should avoid obstacles
-  forward_point_distance: 0.325 # 0.325  - how far along to place an additional scoring point
+  occdist_scale: 0.25           # 0.01   - weighting for how much the controller should avoid obstacles
+  forward_point_distance: 0.25  # 0.325  - how far along to place an additional scoring point
   stop_time_buffer: 0.2         # 0.2    - amount of time a robot must stop in before colliding for a valid traj.
   scaling_speed: 0.25           # 0.25   - absolute velocity at which to start scaling the robot's footprint
   max_scaling_factor: 0.2       # 0.2    - how much to scale the robot's footprint when at speed.

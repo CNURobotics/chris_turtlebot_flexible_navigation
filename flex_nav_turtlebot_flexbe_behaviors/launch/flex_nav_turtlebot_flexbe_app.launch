@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <arg name="ns" default="turtlebot"/>
+
+  <group ns="$(arg ns)">
+    <include file="$(find flexbe_app)/launch/flexbe_ocs.launch"/>
+  </group>
+
+</launch>

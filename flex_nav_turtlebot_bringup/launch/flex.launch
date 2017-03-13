@@ -1,16 +1,16 @@
 <launch>
   <arg name="custom_param_file" default="$(find flex_nav_turtlebot_bringup)/param/dummy.yaml"/>
   <arg name="robot_namespace"   default="turtlebot"/>
+  <arg name="base_prefix"       default="mobile_base" />
   <arg name="scan_topic"        default="hokuyo_node/scan"/>
   <arg name="odom_frame_id"     default="odom"/>
   <arg name="base_frame_id"     default="base_footprint"/>
   <arg name="global_frame_id"   default="map"/>
-  <arg name="odom_topic"        default="odom" />
+  <arg name="odom_topic"        default="$(arg base_prefix)/odom" />
   <arg name="initial_pose_x"    default="0.0"/>
   <arg name="initial_pose_y"    default="0.0"/>
   <arg name="initial_pose_a"    default="0.0"/>
   <arg name="include_fake_localization" default="false"/>
-  <arg name="base_prefix"               default="mobile_base" />
 
   <group ns="$(arg robot_namespace)">
     <param name="tf_prefix"       value="$(arg robot_namespace)_tf"/>

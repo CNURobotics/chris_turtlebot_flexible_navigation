@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <arg name="ns" default="turtlebot"/>
+
+  <group ns="$(arg ns)">
+    <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch">
+      <arg name="behaviors_package" value="flex_nav_turtlebot_flexbe_behaviors" />
+    </include>
+  </group>
+
+</launch>
