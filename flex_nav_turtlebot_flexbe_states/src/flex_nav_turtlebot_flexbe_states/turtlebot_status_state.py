@@ -55,24 +55,33 @@ class TurtlebotStatusState(EventState):
     """
 
     def __init__(self, bumper_topic = 'mobile_base/events/bumper',
-        cliff_topic = 'mobile_base/events/cliff'
-    ):
+                       cliff_topic  = 'mobile_base/events/cliff'):
+
         super(TurtlebotStatusState, self).__init__(outcomes = ['bumper', 'cliff'])
 
         self._bumper_topic = bumper_topic
         self._cliff_topic = cliff_topic
         self._bumper_sub = ProxySubscriberCached({self._bumper_topic: BumperEvent})
         self._cliff_sub = ProxySubscriberCached({self._cliff_topic: CliffEvent})
+        self._return = None # Handle return in case outcome is blocked by low autonomy
 
     def execute(self, userdata):
         if self._bumper_sub.has_msg(self._bumper_topic):
             sensor = self._bumper_sub.get_last_msg(self._bumper_topic)
+            self._bumper_sub.remove_last_msg(self._bumper_topic)
+
             if sensor.state > 0:
                 Logger.logwarn('Bumper %d contact' % (sensor.bumper))
-                return 'bumper'
+                self._return = 'bumper'
 
         if self._cliff_sub.has_msg(self._cliff_topic):
             sensor = self._cliff_sub.get_last_msg(self._cliff_topic)
+            self._cliff_sub.remove_last_msg(self._cliff_topic)
             if sensor.state > 0:
                 Logger.logwarn('Cliff alert')
-                return 'cliff'
+                self._return = 'cliff'
+
+        return self._return
+
+    def on_enter(self, userdata):
+        self._return = None # Clear the completion flag

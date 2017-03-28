@@ -1,0 +1,45 @@
+<launch>
+  <arg name="robot_namespace"   default="turtlebot"/> <!-- robot's name used by plugin to publish topics -->
+  <arg name="base_prefix"       default="mobile_base" />
+
+  <group ns="$(arg robot_namespace)">
+
+    <!-- Record the basic Turtlebot control data -->
+    <node pkg="rosbag" type="record" name="flex_nav_$(arg robot_namespace)_record" respawn="true" output="screen"
+      args="-o flex_nav_$(arg robot_namespace) --split --duration=5m
+    /$(arg robot_namespace)/estimated_pose
+    /$(arg robot_namespace)/$(arg base_prefix)/odom
+    /$(arg robot_namespace)/$(arg base_prefix)/ground_truth
+    /$(arg robot_namespace)/$(arg base_prefix)/odom_ground_truth
+    /$(arg robot_namespace)/stamped_cmd_vel_mux/output/cmd_vel_stamped
+    /$(arg robot_namespace)/$(arg base_prefix)/events/bumper
+    /$(arg robot_namespace)/$(arg base_prefix)/events/cliff
+    /$(arg robot_namespace)/flex_nav_global/goal
+    /$(arg robot_namespace)/flexbe/behavior_update
+    /$(arg robot_namespace)/flexbe/command/attach
+    /$(arg robot_namespace)/flexbe/command/autonomy
+    /$(arg robot_namespace)/flexbe/command/lock
+    /$(arg robot_namespace)/flexbe/command/pause
+    /$(arg robot_namespace)/flexbe/command/preempt
+    /$(arg robot_namespace)/flexbe/command/repeat
+    /$(arg robot_namespace)/flexbe/command/sync
+    /$(arg robot_namespace)/flexbe/command/transition
+    /$(arg robot_namespace)/flexbe/command/unlock
+    /$(arg robot_namespace)/flexbe/command_feedback
+    /$(arg robot_namespace)/flexbe/heartbeat
+    /$(arg robot_namespace)/flexbe/log
+    /$(arg robot_namespace)/flexbe/mirror/outcome
+    /$(arg robot_namespace)/flexbe/mirror/preempt
+    /$(arg robot_namespace)/flexbe/mirror/structure
+    /$(arg robot_namespace)/flexbe/mirror/sync
+    /$(arg robot_namespace)/flexbe/outcome_request
+    /$(arg robot_namespace)/flexbe/request_behavior
+    /$(arg robot_namespace)/flexbe/request_mirror_structure
+    /$(arg robot_namespace)/flexbe/start_behavior
+    /$(arg robot_namespace)/flexbe/status
+    /$(arg robot_namespace)/flexbe/ui_version
+    /$(arg robot_namespace)/flexbe/uicommand
+    /$(arg robot_namespace)/flexbe/uinotification"    />
+  </group>
+
+</launch>

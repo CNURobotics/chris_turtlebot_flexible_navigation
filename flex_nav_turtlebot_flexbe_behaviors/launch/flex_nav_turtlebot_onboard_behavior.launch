@@ -2,9 +2,9 @@
 
 <launch>
 
-  <arg name="ns" default="turtlebot"/>
+  <arg name="robot_namespace" default="turtlebot"/>
 
-  <group ns="$(arg ns)">
+  <group ns="$(arg robot_namespace)">
     <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch">
       <arg name="behaviors_package" value="flex_nav_turtlebot_flexbe_behaviors" />
     </include>

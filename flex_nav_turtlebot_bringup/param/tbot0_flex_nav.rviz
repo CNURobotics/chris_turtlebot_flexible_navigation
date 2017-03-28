@@ -229,8 +229,8 @@ Visualization Manager:
           Show Trail: false
           Value: true
       Name: RobotModel
-      Robot Description: /turtlebot/robot_description
-      TF Prefix: turtlebot_tf
+      Robot Description: /tbot0/robot_description
+      TF Prefix: tbot0_tf
       Update Interval: 0
       Value: true
       Visual Enabled: true
@@ -239,7 +239,7 @@ Visualization Manager:
       Length: 0.219999999
       Name: Axes
       Radius: 0.00999999978
-      Reference Frame: turtlebot_tf/base_footprint
+      Reference Frame: tbot0_tf/base_footprint
       Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
@@ -266,7 +266,7 @@ Visualization Manager:
       Size (Pixels): 2
       Size (m): 0.00999999978
       Style: Points
-      Topic: /turtlebot/hokuyo_node/scan
+      Topic: /tbot0/hokuyo_node/scan
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: false
@@ -274,7 +274,7 @@ Visualization Manager:
     - Class: rviz/Camera
       Enabled: true
       Image Rendering: background and overlay
-      Image Topic: /turtlebot/camera/rgb/image_raw
+      Image Topic: /tbot0/camera/rgb/image_raw
       Name: Camera
       Overlay Alpha: 0.75
       Queue Size: 2
@@ -296,81 +296,81 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        turtlebot_tf/base_footprint:
+        tbot0_tf/base_footprint:
           Value: true
-        turtlebot_tf/base_link:
+        tbot0_tf/base_link:
           Value: true
-        turtlebot_tf/camera_depth_frame:
+        tbot0_tf/camera_depth_frame:
           Value: true
-        turtlebot_tf/camera_depth_optical_frame:
+        tbot0_tf/camera_depth_optical_frame:
           Value: true
-        turtlebot_tf/camera_link:
+        tbot0_tf/camera_link:
           Value: true
-        turtlebot_tf/camera_rgb_frame:
+        tbot0_tf/camera_rgb_frame:
           Value: true
-        turtlebot_tf/camera_rgb_optical_frame:
+        tbot0_tf/camera_rgb_optical_frame:
           Value: true
-        turtlebot_tf/caster_back_link:
+        tbot0_tf/caster_back_link:
           Value: true
-        turtlebot_tf/caster_front_link:
+        tbot0_tf/caster_front_link:
           Value: true
-        turtlebot_tf/cliff_sensor_front_link:
+        tbot0_tf/cliff_sensor_front_link:
           Value: true
-        turtlebot_tf/cliff_sensor_left_link:
+        tbot0_tf/cliff_sensor_left_link:
           Value: true
-        turtlebot_tf/cliff_sensor_right_link:
+        tbot0_tf/cliff_sensor_right_link:
           Value: true
-        turtlebot_tf/gyro_link:
+        tbot0_tf/gyro_link:
           Value: true
-        turtlebot_tf/hokuyo_base_link:
+        tbot0_tf/hokuyo_base_link:
           Value: true
-        turtlebot_tf/hokuyo_laser:
+        tbot0_tf/hokuyo_laser:
           Value: true
-        turtlebot_tf/map:
+        tbot0_tf/map:
           Value: true
-        turtlebot_tf/odom:
+        tbot0_tf/odom:
           Value: true
-        turtlebot_tf/plate_bottom_link:
+        tbot0_tf/plate_bottom_link:
           Value: true
-        turtlebot_tf/plate_middle_link:
+        tbot0_tf/plate_middle_link:
           Value: true
-        turtlebot_tf/plate_top_link:
+        tbot0_tf/plate_top_link:
           Value: true
-        turtlebot_tf/pole_bottom_0_link:
+        tbot0_tf/pole_bottom_0_link:
           Value: true
-        turtlebot_tf/pole_bottom_1_link:
+        tbot0_tf/pole_bottom_1_link:
           Value: true
-        turtlebot_tf/pole_bottom_2_link:
+        tbot0_tf/pole_bottom_2_link:
           Value: true
-        turtlebot_tf/pole_bottom_3_link:
+        tbot0_tf/pole_bottom_3_link:
           Value: true
-        turtlebot_tf/pole_bottom_4_link:
+        tbot0_tf/pole_bottom_4_link:
           Value: true
-        turtlebot_tf/pole_bottom_5_link:
+        tbot0_tf/pole_bottom_5_link:
           Value: true
-        turtlebot_tf/pole_kinect_0_link:
+        tbot0_tf/pole_kinect_0_link:
           Value: true
-        turtlebot_tf/pole_kinect_1_link:
+        tbot0_tf/pole_kinect_1_link:
           Value: true
-        turtlebot_tf/pole_middle_0_link:
+        tbot0_tf/pole_middle_0_link:
           Value: true
-        turtlebot_tf/pole_middle_1_link:
+        tbot0_tf/pole_middle_1_link:
           Value: true
-        turtlebot_tf/pole_middle_2_link:
+        tbot0_tf/pole_middle_2_link:
           Value: true
-        turtlebot_tf/pole_middle_3_link:
+        tbot0_tf/pole_middle_3_link:
           Value: true
-        turtlebot_tf/pole_top_0_link:
+        tbot0_tf/pole_top_0_link:
           Value: true
-        turtlebot_tf/pole_top_1_link:
+        tbot0_tf/pole_top_1_link:
           Value: true
-        turtlebot_tf/pole_top_2_link:
+        tbot0_tf/pole_top_2_link:
           Value: true
-        turtlebot_tf/pole_top_3_link:
+        tbot0_tf/pole_top_3_link:
           Value: true
-        turtlebot_tf/wheel_left_link:
+        tbot0_tf/wheel_left_link:
           Value: true
-        turtlebot_tf/wheel_right_link:
+        tbot0_tf/wheel_right_link:
           Value: true
       Marker Scale: 0.100000001
       Name: TF
@@ -378,74 +378,74 @@ Visualization Manager:
       Show Axes: false
       Show Names: false
       Tree:
-        turtlebot_tf/map:
-          turtlebot_tf/odom:
-            turtlebot_tf/base_footprint:
-              turtlebot_tf/base_link:
-                turtlebot_tf/caster_back_link:
+        tbot0_tf/map:
+          tbot0_tf/odom:
+            tbot0_tf/base_footprint:
+              tbot0_tf/base_link:
+                tbot0_tf/caster_back_link:
                   {}
-                turtlebot_tf/caster_front_link:
+                tbot0_tf/caster_front_link:
                   {}
-                turtlebot_tf/cliff_sensor_front_link:
+                tbot0_tf/cliff_sensor_front_link:
                   {}
-                turtlebot_tf/cliff_sensor_left_link:
+                tbot0_tf/cliff_sensor_left_link:
                   {}
-                turtlebot_tf/cliff_sensor_right_link:
+                tbot0_tf/cliff_sensor_right_link:
                   {}
-                turtlebot_tf/gyro_link:
+                tbot0_tf/gyro_link:
                   {}
-                turtlebot_tf/wheel_left_link:
+                tbot0_tf/wheel_left_link:
                   {}
-                turtlebot_tf/wheel_right_link:
+                tbot0_tf/wheel_right_link:
                   {}
-              turtlebot_tf/camera_rgb_frame:
-                turtlebot_tf/camera_depth_frame:
-                  turtlebot_tf/camera_depth_optical_frame:
+              tbot0_tf/camera_rgb_frame:
+                tbot0_tf/camera_depth_frame:
+                  tbot0_tf/camera_depth_optical_frame:
                     {}
-                turtlebot_tf/camera_link:
+                tbot0_tf/camera_link:
                   {}
-                turtlebot_tf/camera_rgb_optical_frame:
+                tbot0_tf/camera_rgb_optical_frame:
                   {}
-              turtlebot_tf/hokuyo_base_link:
-                turtlebot_tf/hokuyo_laser:
+              tbot0_tf/hokuyo_base_link:
+                tbot0_tf/hokuyo_laser:
                   {}
-              turtlebot_tf/plate_bottom_link:
+              tbot0_tf/plate_bottom_link:
                 {}
-              turtlebot_tf/plate_middle_link:
+              tbot0_tf/plate_middle_link:
                 {}
-              turtlebot_tf/plate_top_link:
+              tbot0_tf/plate_top_link:
                 {}
-              turtlebot_tf/pole_bottom_0_link:
+              tbot0_tf/pole_bottom_0_link:
                 {}
-              turtlebot_tf/pole_bottom_1_link:
+              tbot0_tf/pole_bottom_1_link:
                 {}
-              turtlebot_tf/pole_bottom_2_link:
+              tbot0_tf/pole_bottom_2_link:
                 {}
-              turtlebot_tf/pole_bottom_3_link:
+              tbot0_tf/pole_bottom_3_link:
                 {}
-              turtlebot_tf/pole_bottom_4_link:
+              tbot0_tf/pole_bottom_4_link:
                 {}
-              turtlebot_tf/pole_bottom_5_link:
+              tbot0_tf/pole_bottom_5_link:
                 {}
-              turtlebot_tf/pole_kinect_0_link:
+              tbot0_tf/pole_kinect_0_link:
                 {}
-              turtlebot_tf/pole_kinect_1_link:
+              tbot0_tf/pole_kinect_1_link:
                 {}
-              turtlebot_tf/pole_middle_0_link:
+              tbot0_tf/pole_middle_0_link:
                 {}
-              turtlebot_tf/pole_middle_1_link:
+              tbot0_tf/pole_middle_1_link:
                 {}
-              turtlebot_tf/pole_middle_2_link:
+              tbot0_tf/pole_middle_2_link:
                 {}
-              turtlebot_tf/pole_middle_3_link:
+              tbot0_tf/pole_middle_3_link:
                 {}
-              turtlebot_tf/pole_top_0_link:
+              tbot0_tf/pole_top_0_link:
                 {}
-              turtlebot_tf/pole_top_1_link:
+              tbot0_tf/pole_top_1_link:
                 {}
-              turtlebot_tf/pole_top_2_link:
+              tbot0_tf/pole_top_2_link:
                 {}
-              turtlebot_tf/pole_top_3_link:
+              tbot0_tf/pole_top_3_link:
                 {}
       Update Interval: 0
       Value: true
@@ -455,7 +455,7 @@ Visualization Manager:
       Draw Behind: false
       Enabled: true
       Name: Map
-      Topic: /turtlebot/high_level_planner/global_costmap/costmap
+      Topic: /tbot0/high_level_planner/global_costmap/costmap
       Unreliable: false
       Value: true
     - Alpha: 0.600000024
@@ -464,7 +464,7 @@ Visualization Manager:
       Draw Behind: false
       Enabled: true
       Name: Map
-      Topic: /turtlebot/low_level_planner/local_costmap/costmap
+      Topic: /tbot0/low_level_planner/local_costmap/costmap
       Unreliable: false
       Value: true
     - Alpha: 0.699999988
@@ -473,7 +473,7 @@ Visualization Manager:
       Draw Behind: false
       Enabled: true
       Name: Map
-      Topic: /turtlebot/map
+      Topic: /tbot0/map
       Unreliable: false
       Value: true
     - Alpha: 1
@@ -495,7 +495,7 @@ Visualization Manager:
       Radius: 0.0299999993
       Shaft Diameter: 0.100000001
       Shaft Length: 0.100000001
-      Topic: /turtlebot/high_level_planner/SBPLLatticePlanner/plan
+      Topic: /tbot0/high_level_planner/SBPLLatticePlanner/plan
       Unreliable: false
       Value: true
     - Alpha: 1
@@ -517,13 +517,13 @@ Visualization Manager:
       Radius: 0.0299999993
       Shaft Diameter: 0.100000001
       Shaft Length: 0.100000001
-      Topic: /turtlebot/low_level_planner/DWAPlannerROS/local_plan
+      Topic: /tbot0/low_level_planner/DWAPlannerROS/local_plan
       Unreliable: false
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: turtlebot_tf/map
+    Fixed Frame: tbot0_tf/map
     Frame Rate: 30
   Name: root
   Tools:
@@ -534,12 +534,12 @@ Visualization Manager:
     - Class: rviz/FocusCamera
     - Class: rviz/Measure
     - Class: rviz/SetInitialPose
-      Topic: /turtlebot/initialpose
+      Topic: /tbot0/initialpose
     - Class: rviz/SetGoal
-      Topic: /turtlebot/flex_nav_global/goal
+      Topic: /tbot0/flex_nav_global/goal
     - Class: rviz/PublishPoint
       Single click: true
-      Topic: /turtlebot/clicked_point
+      Topic: /tbot0/clicked_point
   Value: true
   Views:
     Current:

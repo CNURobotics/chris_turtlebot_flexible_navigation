@@ -7,7 +7,7 @@
 	<author>Justin Willis</author>
 	<date>Mon Jan 09 2017</date>
 	<description>
-		Stops the robot, clears the cost map, and backs up
+		Stops the robot, backs up, and clears the cost map.  Operator can bypass steps in lower autonomy levels.
 	</description>
 
 

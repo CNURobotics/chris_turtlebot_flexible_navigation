@@ -1,13 +1,13 @@
 DWAPlannerROS:
 
 # Robot Configuration Parameters - Turtlebot
-  max_vel_x: 0.25 # slower than max for now
+  max_vel_x: 0.35 # slower than max for now
   min_vel_x: 0.0
 
   max_vel_y: 0.0  # diff drive robot
   min_vel_y: 0.0  # diff drive robot
 
-  max_trans_vel: 0.5   # choose slightly less than the base's capability
+  max_trans_vel: 0.50  # choose slightly less than the base's capability
   min_trans_vel: 0.05  # this is the min trans velocity when there is negligible rotational velocity
   trans_stopped_vel: 0.1
 
@@ -19,13 +19,13 @@ DWAPlannerROS:
   min_rot_vel: 0.10  # this is the min angular velocity when there is negligible translational velocity
   rot_stopped_vel: 0.4
 
-  acc_lim_x: 1.0 # maximum is theoretically 2.0, but we
-  acc_lim_theta: 2.0
-  acc_lim_y: 0.0      # diff drive robot
+  acc_lim_x:     0.50  # maximum is theoretically 2.0, but we limit for smoother start
+  acc_lim_theta: 3.14
+  acc_lim_y:     0.0   # diff drive robot
 
 # Goal Tolerance Parameters
-  yaw_goal_tolerance: 0.1  # 0.05
-  xy_goal_tolerance: 0.15  # 0.10
+  yaw_goal_tolerance: 0.05 # 0.05
+  xy_goal_tolerance:  0.15 # 0.10
   # latch_xy_goal_tolerance: false
 
 # Forward Simulation Parameters
@@ -47,8 +47,8 @@ DWAPlannerROS:
   oscillation_reset_dist: 0.05  # 0.05   - how far to travel before resetting oscillation flags
 
 # Debugging
-  publish_traj_pc : true
-  publish_cost_grid_pc: true
+  publish_traj_pc : false
+  publish_cost_grid_pc: false
   global_frame_id: odom
 
 
