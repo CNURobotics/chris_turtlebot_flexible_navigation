@@ -8,7 +8,6 @@
     <include file="$(find flexbe_app)/launch/flexbe_ocs.launch"/>
 
     <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch">
-      <arg name="behaviors_package" value="flex_nav_turtlebot_flexbe_behaviors" />
     </include>
 
   </group>
