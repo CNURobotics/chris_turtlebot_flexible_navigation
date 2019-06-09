@@ -1,6 +1,6 @@
 <package>
 	<name>flex_nav_turtlebot_flexbe_states</name>
-	<version>0.1.1</version>
+	<version>0.2.0</version>
 	<description>
 		 flex_nav_turtle_flexbe_states provides a collection of FlexBE states used to demonstrate the flexible_navigation system using CHRISLab Kobuki turtlebot setup
 	</description>

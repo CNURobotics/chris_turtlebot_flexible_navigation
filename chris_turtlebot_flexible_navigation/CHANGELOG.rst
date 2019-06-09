@@ -1,6 +1,9 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package chris_turtlebot_flexible_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Update for the latest Melodic updates
+0.2.0 (2019-06-09)
+---------------------
 Update for the latest Kinetic updates
 0.1.1 (2019-06-08)
 ---------------------

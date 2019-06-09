@@ -1,7 +1,7 @@
 
 <package>
   <name>flex_nav_turtlebot_bringup</name>
-  <version>0.1.1</version>
+  <version>0.2.0</version>
   <description>Setup to demonstrate the FlexBE-based flexible_navigation setup using the Kobuki turtlebot setup</description>
   <maintainer email="david.conner@cnu.edu">David Conner</maintainer>
   <license>BSD</license>
@@ -18,7 +18,7 @@
   <run_depend>move_base</run_depend>
   <run_depend>map_server</run_depend>
   <run_depend>amcl</run_depend>
-  <run_depend>gmapping</run_depend>
+  <!--run_depend>gmapping</run_depend-->
   <run_depend>chris_turtlebot_bringup</run_depend>
   <run_depend>dwa_local_planner</run_depend>
   <run_depend>flex_nav_planners</run_depend>

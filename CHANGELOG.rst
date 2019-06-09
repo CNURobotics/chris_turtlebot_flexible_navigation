@@ -1,7 +1,8 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package chris_turtlebot_flexible_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+0.2.0 Update for the latest Melodic updates (2019)
+---------------------
 0.1.1 Update for the latest Kinetic updates (2019)
 ---------------------
 0.1.0 Modify for FlexBE App setup
