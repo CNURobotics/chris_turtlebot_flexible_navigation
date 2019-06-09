@@ -33,8 +33,8 @@
       <remap from="scan" to="$(arg scan_topic)"/>
 
       <!-- reset frame_id parameters using user input data -->
-      <param name="global_costmap/global_frame"     value="$(arg global_frame_id)"/>
-      <param name="global_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
+      <param name="global_costmap/global_frame"     value="$(arg robot_namespace)_tf/$(arg global_frame_id)"/>
+      <param name="global_costmap/robot_base_frame" value="$(arg robot_namespace)_tf/$(arg base_frame_id)"/>
 
     </node>
 
@@ -51,9 +51,9 @@
       <remap from="cmd_vel" to="stamped_cmd_vel_mux/input/navi"/>
 
       <!-- reset frame_id parameters using user input data -->
-      <param name="local_costmap/global_frame"      value="$(arg odom_frame_id)"/>
-      <param name="local_costmap/robot_base_frame"  value="$(arg base_frame_id)"/>
-      <param name="DWAPlannerROS/global_frame_id"   value="$(arg odom_frame_id)"/>
+      <param name="local_costmap/global_frame"      value="$(arg robot_namespace)_tf/$(arg odom_frame_id)"/>
+      <param name="local_costmap/robot_base_frame"  value="$(arg robot_namespace)_tf/$(arg base_frame_id)"/>
+      <param name="DWAPlannerROS/global_frame_id"   value="$(arg robot_namespace)_tf/$(arg odom_frame_id)"/>
     </node>
 
   </group>

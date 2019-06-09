@@ -1,6 +1,10 @@
 <package>
   <name>chris_turtlebot_flexible_navigation</name>
+<<<<<<< HEAD
   <version>0.1.2</version>
+=======
+  <version>0.2.0</version>
+>>>>>>> conversion to ROS Melodic
   <description>
     Meta-package for CNU Robotics CHRISLab Turtlebot specific Flexible Navigation System
   </description>

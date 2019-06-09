@@ -1,6 +1,6 @@
-<package>
+<package format="2">
 	<name>flex_nav_turtlebot_flexbe_states</name>
-	<version>0.1.2</version>
+	<version>0.2.0</version>
 	<description>
 		 flex_nav_turtle_flexbe_states provides a collection of FlexBE states used to demonstrate the flexible_navigation system using CHRISLab Kobuki turtlebot setup
 	</description>
@@ -9,10 +9,10 @@
 	<license>BSD</license>
 	<url>http://ros.org/wiki/flexbe_states</url>
 	<buildtool_depend>catkin</buildtool_depend>
-	<run_depend>rospy</run_depend>
-	<run_depend>geometry_msgs</run_depend>
-	<run_depend>flexbe_msgs</run_depend>
-	<run_depend>flexbe_core</run_depend>
+	<depend>rospy</depend>
+	<depend>geometry_msgs</depend>
+	<depend>flexbe_msgs</depend>
+	<depend>flexbe_core</depend>
 
 	<export>
 	    <flexbe_states />

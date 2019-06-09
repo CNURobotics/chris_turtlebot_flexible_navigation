@@ -7,17 +7,17 @@ DWAPlannerROS:
   max_vel_y: 0.0  # diff drive robot
   min_vel_y: 0.0  # diff drive robot
 
-  max_trans_vel: 0.50  # choose slightly less than the base's capability
-  min_trans_vel: 0.01  # this is the min trans velocity when there is negligible rotational velocity
+  max_vel_trans: 0.50  # choose slightly less than the base's capability
+  min_vel_trans: 0.01  # this is the min trans velocity when there is negligible rotational velocity
   trans_stopped_vel: 0.01
 
   # Warning!
   #   do not set min_trans_vel to 0.0 otherwise dwa will always think translational velocities
   #   are non-negligible and small in place rotational velocities will be created.
 
-  max_rot_vel: 1.5708 # choose slightly less than the base's capability
-  min_rot_vel: 0.05   # this is the min angular velocity when there is negligible translational velocity
-  rot_stopped_vel: 0.03
+  max_vel_theta: 1.5708  # choose slightly less than the base's capability
+  min_vel_theta: 0.01    # this is the min angular velocity when there is negligible translational velocity
+  theta_stopped_vel: 0.03
 
   acc_lim_x:     0.50  # maximum is theoretically 2.0, but we limit for smoother start
   acc_lim_y:     0.0   # diff drive robot
@@ -38,6 +38,7 @@ DWAPlannerROS:
   path_distance_bias: 32.0      # 32.0   - weighting for how much it should stick to the global path plan
   goal_distance_bias: 24.0      # 24.0   - wighting for how much it should attempt to reach its goal
   occdist_scale: 0.05           # 0.01   - weighting for how much the controller should avoid obstacles
+
 
   forward_point_distance: 0.25  # 0.325  - how far along to place an additional scoring point
   stop_time_buffer: 0.2         # 0.2    - amount of time a robot must stop in before colliding for a valid traj.

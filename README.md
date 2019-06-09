@@ -80,11 +80,12 @@ The following directions are for a simple demonstration on a single ROS network.
   * Uses the launch file with a map corresponding to the Gazebo world (maps are located in common chris_world_models package)
   * For example, to launch with the Creech world map use `roslaunch chris_turtlebot_navigation amcl_creech_world.launch`
 
-`roslaunch chris_turtlebot_navigation gmapping_demo.launch`
-  * This uses Simultaneous Localization and Mapping (SLAM) to build a map during navigation.
+> NOTE: gmapping is not released under Melodic
+>  `roslaunch chris_turtlebot_navigation gmapping_demo.launch`
+>  * This uses Simultaneous Localization and Mapping (SLAM) to build a map during navigation.
+>   Future releases will include a Cartographer setup.
 
-
- *NOTE:* For AMCL and gmapping, the maps must have consistent resolution with the SBPL-based planner primitives configured in this setup.
+ *NOTE:* For AMCL and slam mapping, the maps must have consistent resolution with the SBPL-based planner primitives configured in this setup.
 
 ### Visualization
 
