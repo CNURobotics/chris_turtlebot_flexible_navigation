@@ -1,6 +1,6 @@
 <package>
   <name>flex_nav_turtlebot_flexbe_behaviors</name>
-  <version>1.0.0</version>
+  <version>0.1.1</version>
   <description>
      Behaviors related to demonstration of flexible_navigation system using CHRISLab Kobuki Turtlebot
   </description>

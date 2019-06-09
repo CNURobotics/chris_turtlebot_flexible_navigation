@@ -6,7 +6,7 @@ find_package(catkin REQUIRED COMPONENTS )
 
 # What other packages will need to use this package
 catkin_package(
-    CATKIN_DEPENDS tf roscpp sensor_msgs flex_nav_planner flex_nav_controller flex_nav_flexbe_states flex_nav_turtlebot_flexbe_states
+    CATKIN_DEPENDS tf roscpp sensor_msgs flex_nav_planners flex_nav_controllers flex_nav_flexbe_states flex_nav_turtlebot_flexbe_states
 )
 
 

@@ -16,7 +16,7 @@
     <param name="tf_prefix"       value="$(arg robot_namespace)_tf"/>
 
     <!-- Path Planning -->
-    <node pkg="flex_nav_planner" type="flex_nav_planner_get_path_node" respawn="false" name="high_level_planner" output="screen">
+    <node pkg="flex_nav_planners" type="flex_nav_planners_get_path_node" respawn="false" name="high_level_planner" output="screen">
       <rosparam file="$(find flex_nav_turtlebot_bringup)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
       <rosparam file="$(find flex_nav_turtlebot_bringup)/param/global_costmap_params.yaml" command="load" />
       <rosparam file="$(arg custom_param_file)" command="load" />
@@ -37,7 +37,7 @@
     </node>
 
     <!-- Path Follower Control -->
-    <node pkg="flex_nav_controller" type="flex_nav_controller_follow_path_node" respawn="false" name="low_level_planner" output="screen">
+    <node pkg="flex_nav_controllers" type="flex_nav_controllers_follow_path_node" respawn="false" name="low_level_planner" output="screen">
       <param name="controller_frequency" value="10.0" />
       <rosparam file="$(find flex_nav_turtlebot_bringup)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
       <rosparam file="$(find flex_nav_turtlebot_bringup)/param/local_costmap_params.yaml" command="load" />
