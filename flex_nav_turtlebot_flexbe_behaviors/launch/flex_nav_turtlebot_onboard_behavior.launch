@@ -5,12 +5,7 @@
   <arg name="robot_namespace" default="turtlebot"/>
 
   <group ns="$(arg robot_namespace)">
-    <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch">
-<<<<<<< HEAD
-      <arg name="behaviors_package" value="flex_nav_turtlebot_flexbe_behaviors" />
-=======
->>>>>>> kinetic_devel_gitlab
-    </include>
+    <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch"/>
   </group>
 
 </launch>

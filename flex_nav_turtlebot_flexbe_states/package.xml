@@ -1,11 +1,11 @@
 <package>
 	<name>flex_nav_turtlebot_flexbe_states</name>
-	<version>0.1.1</version>
+	<version>0.1.2</version>
 	<description>
 		 flex_nav_turtle_flexbe_states provides a collection of FlexBE states used to demonstrate the flexible_navigation system using CHRISLab Kobuki turtlebot setup
 	</description>
-	<author email="justin.willis.13@cnu.edu">Justin Willis</author>
-	<maintainer email="david.conner@cnu.edu">David Conner</maintainer>
+	<author>Justin Willis</author>
+	<maintainer email="robotics@cnu.edu">David Conner</maintainer>
 	<license>BSD</license>
 	<url>http://ros.org/wiki/flexbe_states</url>
 	<buildtool_depend>catkin</buildtool_depend>

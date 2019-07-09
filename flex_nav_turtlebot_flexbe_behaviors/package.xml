@@ -4,7 +4,7 @@
   <description>
      Behaviors related to demonstration of flexible_navigation system using CHRISLab Kobuki Turtlebot
   </description>
-  <maintainer email="david.conner@cnu.edu">David Conner</maintainer>
+  <maintainer email="robotics@cnu.edu">David Conner</maintainer>
   <license>BSD</license>
 
   <buildtool_depend>catkin</buildtool_depend>

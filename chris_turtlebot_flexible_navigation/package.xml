@@ -1,11 +1,11 @@
 <package>
   <name>chris_turtlebot_flexible_navigation</name>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
   <description>
     Meta-package for CNU Robotics CHRISLab Turtlebot specific Flexible Navigation System
   </description>
   <author>David Conner</author>
-  <maintainer email="david.conner@cnu.edu">David Conner</maintainer>
+  <maintainer email="robotics@cnu.edu">David Conner</maintainer>
   <license>BSD</license>
   <url type="bugtracker">https://github.com/CNURobotics/chris_ros_turtlebot/issues</url>
   <url type="repository">https://github.com/CNURobotics/chris_ros_turtlebot</url>

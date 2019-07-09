@@ -44,6 +44,23 @@ The following directions are for a simple demonstration on a single ROS network.
  * Starts the simulated CHRISlab Turtlebot with a Hokuyo URG-04LX Lidar and Kinect 3D Sensor
  * Places the simulated robot in an existing Gazebo simulation that must be started first.
 
+### Start map server
+
+  If using a known map, start the map server.
+  > NOTE: The map resolution should match the resolution of the *state lattice* if using the SBPL
+  > state lattice planner(s).
+
+  There are several options; choose **no more than one** of the following map options:
+  'roslaunch chris_turtlebot_navigation map_server_creech_world_100.launch'
+  * Launches map server with Creech world map at 0.1 meter cell resolution
+
+  'roslaunch chris_turtlebot_navigation map_server_creech_world_050.launch'
+  * Launches map server with Creech world map at 0.050 meter cell resolution
+
+  'roslaunch chris_turtlebot_navigation map_server.launch'
+  * Loads the map specified in the environment variable `CHRIS_TURTLEBOT_MAP_FILE`
+
+  If using a SLAM system (e.g. gmapping or Cartographer), an external map server is not needed.
 
 ### Start localization
 
@@ -78,20 +95,40 @@ The following directions are for a simple demonstration on a single ROS network.
 ### Startup of Flexible Navigation
 
 Flexible Navigation requires startup of planning and control nodes, as well as the FlexBE behavior engine and UI.
-
-`roslaunch flex_nav_turtlebot_bringup flex.launch`
- * This starts the planning and control nodes.
- * This version uses a 2-layer planner as a demonstration.
-  * Only a simple set of SBPL motion primitives is included in this version, and will be refined in the future.
-
 `roslaunch flex_nav_turtlebot_flexbe_behaviors flex_nav_turtlebot_behavior_testing.launch`
   * This starts the FlexBE engine and FlexBE App UI
 
-These launch files may also be used with different `robot_namespaces`.
+Then start one (and only one) of the following:
+
+`roslaunch flex_nav_turtlebot_bringup flex.launch`
+ * This starts the planning and control nodes.
+ * This version uses a 2-level planner as a demonstration.
+  * The global planner plans over the full map, with sensor data
+  * The local planner plans over smaller window trying to follow the global path
+
+or
+
+`roslaunch flex_nav_turtlebot_bringup flex_multi_level.launch`
+ * This starts the planning and control nodes.
+ * This version uses a 3-level planner as a demonstration.
+  * The high-level planner is based only  on the static map with SBPL 0.100 meter resolution state lattice
+  * The mid-level planner using only local obstacle sensing with SBPL 0.050 meter resolution state lattice
+  * The low-level planner uses DWA with 0.025 resolution
+
+ *  The mid- and low-level planners run concurrently as they try to follow the global path defined by the high-level planner.
+
+  The relevant motion primitives are defined in the `chris_turtlebot_navigation` package.
+
+
+  These launch files may also be used with different `robot_namespaces`.
 
 ### FlexBE Operation
 After startup, all control is through the FlexBE App operator interface and RViz.  
-* First load the `Turtlebot Flex Planner` behavior through the `FlexBE Behavior Dashboard` tab.
+* First load the desired behavior through the `FlexBE Behavior Dashboard` tab.
+  * The behavior should match the flex launch started above.
+    * 'flex.launch' --> `Turtlebot Flex Planner`
+    * 'flex_multi_level.launch' --> `Turtlebot Multi Level Flex Planner`
+
 * Execute the behavior via the `FlexBE Runtime Control` tab.
 * The system requires the operator to input a `2D Nav Goal` via the `RViz` screen
   * If the system is in `low` autonomy or higher, the system will request a global plan as soon as the goal is received
@@ -104,7 +141,7 @@ After startup, all control is through the FlexBE App operator interface and RViz
   * In `full` autonomy, the system will automatically transition to requesting a new goal
   * In any autonomy level less than `full`, the system will require an operator decision to continue
 
-Whenever a plan is being executed, the `FlexBE` state machine transitions to a concurrent node that uses an on line multilayer planner to refine the plans as the robot moves, and also monitors the Turtlebot bumper status for collision.  The operator can terminate the execution early by selecting the appropriate transition in the `FlexBE UI`.  If this low level plan fails, the robot will request permission to initiate a recovery behavior; in `full` autonomy the system automatically initiates the recovery.
+Whenever a plan is being executed, the `FlexBE` state machine transitions to a concurrent node that uses on line  planners to refine the plans as the robot moves, and also monitors the Turtlebot bumper status for collision.  The operator can terminate the execution early by selecting the appropriate transition in the `FlexBE UI`.  If this low level plan fails, the robot will request permission to initiate a recovery behavior; in `full` autonomy the system automatically initiates the recovery.
 
 [ROS]: http://www.ros.org
 [FlexBE]: https://flexbe.github.io

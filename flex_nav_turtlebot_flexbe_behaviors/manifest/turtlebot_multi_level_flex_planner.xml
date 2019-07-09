@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="Turtlebot Multi-Level Flex Planner">
+
+	<executable package_path="flex_nav_turtlebot_flexbe_behaviors.turtlebot_multi_level_flex_planner_sm" class="TurtlebotMultiLevelFlexPlannerSM" />
+	<tagstring>Flex_Nav</tagstring>
+	<author>David Conner</author>
+	<date>Thursday 13-June-2019</date>
+	<description>
+		Uses Flexible Navigation to control the Turtlebot robot with 3-level planning.
+high-level: Map only 
+mid-level: Smaller map area with sensors 
+low-level: sensors only
+	</description>
+
+
+	<!-- Contained Behaviors -->
+	<contains name="Turtlebot Simple Recovery" />
+
+	<!-- Available Parameters -->
+
+</behavior>

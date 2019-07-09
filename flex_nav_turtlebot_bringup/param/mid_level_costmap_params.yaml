@@ -1,0 +1,15 @@
+costmap_name: mid_level_costmap
+mid_level_costmap:
+   global_frame: odom
+   robot_base_frame: base_footprint
+   update_frequency:  2.0
+   publish_frequency: 0.5
+   static_map: false
+   rolling_window: true
+   width: 4.0
+   height: 4.0
+   resolution: 0.050
+   transform_tolerance: 0.5
+   plugins:
+     - {name: obstacle_layer,          type: "costmap_2d::VoxelLayer"}
+     - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}

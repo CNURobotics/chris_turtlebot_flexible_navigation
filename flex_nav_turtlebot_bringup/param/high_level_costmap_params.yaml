@@ -1,0 +1,15 @@
+costmap_name: high_level_costmap
+high_level_costmap:
+   global_frame: map
+   robot_base_frame: base_footprint
+   update_frequency:  0.5
+   publish_frequency: 0.5
+   static_map: true
+   transform_tolerance: 0.5
+   resolution: 0.100
+   # We will only plan globally based on given static map
+   # The user should use discretion in setting global goals to make sure
+   # that local obstances within sensor range do not block the planned path
+   plugins:
+     - {name: static_layer,            type: "costmap_2d::StaticLayer"}
+     - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}

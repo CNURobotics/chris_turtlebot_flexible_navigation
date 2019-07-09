@@ -1,9 +1,9 @@
 
 <package>
   <name>flex_nav_turtlebot_bringup</name>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
   <description>Setup to demonstrate the FlexBE-based flexible_navigation setup using the Kobuki turtlebot setup</description>
-  <maintainer email="david.conner@cnu.edu">David Conner</maintainer>
+  <maintainer email="robotics@cnu.edu">David Conner</maintainer>
   <license>BSD</license>
   <url type="website">  </url>
   <url type="repository"> </url>
