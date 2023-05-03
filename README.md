@@ -12,7 +12,7 @@ Installation and Setup
 
 This package has a number of dependencies.  The quickest, and easiest method to get a demonstration up and running, is to follow the [CHRISLab Installation] below.  This quickly sets up the entire CHRISLab system in a separate workspace.
 
-1) Ensure that you are running a recent ROS version; this system is tested on `ros-kinetic-desktop-full`.  See [ROS Installation] for more information.
+1) Ensure that you are running a recent ROS version; this system is tested on `ros-melodic-desktop-full`.  See [ROS Installation] for more information.
 
 2) Follow the [CHRISLab Installation] guide
 * This will install the entire system in a new workspace. Once you build, you can run the Gazebo simulation based demonstration described below.
@@ -116,4 +116,4 @@ Whenever a plan is being executed, the `FlexBE` state machine transitions to a c
 [FlexBE System]: https://github.com/team-vigir/flexbe_behavior_engine
 [CHRISLab Installation]: https://github.com/CNURobotics/chris_install
 [FlexBE App Installation]: http://philserver.bplaced.net/fbe/download.php
-[ROS Installation]: http://wiki.ros.org/kinetic/Installation
+[ROS Installation]: http://wiki.ros.org/melodic/Installation
