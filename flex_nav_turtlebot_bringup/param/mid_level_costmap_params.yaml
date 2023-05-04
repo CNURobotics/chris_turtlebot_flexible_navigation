@@ -4,7 +4,6 @@ mid_level_costmap:
    robot_base_frame: base_footprint
    update_frequency:  2.0
    publish_frequency: 0.5
-   static_map: false
    rolling_window: true
    width: 4.0
    height: 4.0

@@ -51,13 +51,15 @@ The following directions are for a simple demonstration on a single ROS network.
   > state lattice planner(s).
 
   There are several options; choose **no more than one** of the following map options:
-  'roslaunch chris_turtlebot_navigation map_server_creech_world_100.launch'
+  `roslaunch chris_turtlebot_navigation map_server_creech_world_100.launch`
   * Launches map server with Creech world map at 0.1 meter cell resolution
+  * Use this with `flex_multi_level.launch` planner below
 
-  'roslaunch chris_turtlebot_navigation map_server_creech_world_050.launch'
+  `roslaunch chris_turtlebot_navigation map_server_creech_world_050.launch`
   * Launches map server with Creech world map at 0.050 meter cell resolution
+  * Use this with `flex.launch` below
 
-  'roslaunch chris_turtlebot_navigation map_server.launch'
+  `roslaunch chris_turtlebot_navigation map_server.launch`
   * Loads the map specified in the environment variable `CHRIS_TURTLEBOT_MAP_FILE`
 
   If using a SLAM system (e.g. gmapping or Cartographer), an external map server is not needed.
@@ -80,10 +82,9 @@ The following directions are for a simple demonstration on a single ROS network.
   * Uses the launch file with a map corresponding to the Gazebo world (maps are located in common chris_world_models package)
   * For example, to launch with the Creech world map use `roslaunch chris_turtlebot_navigation amcl_creech_world.launch`
 
-> NOTE: gmapping is not released under Melodic
->  `roslaunch chris_turtlebot_navigation gmapping_demo.launch`
->  * This uses Simultaneous Localization and Mapping (SLAM) to build a map during navigation.
->   Future releases will include a Cartographer setup.
+`roslaunch chris_turtlebot_navigation gmapping_demo.launch`
+  * This uses Simultaneous Localization and Mapping (SLAM) to build a map during navigation.
+   Future releases will include a Cartographer setup.
 
  *NOTE:* For AMCL and slam mapping, the maps must have consistent resolution with the SBPL-based planner primitives configured in this setup.
 
@@ -92,10 +93,11 @@ The following directions are for a simple demonstration on a single ROS network.
 `roslaunch flex_nav_turtlebot_bringup turtlebot_flex_nav_rviz.launch`
   * Displays a standard view of Turtlebot and sensor data, with maps, and paths displayed
   * Topic names are customized in this configuration to match this demo
-
+  * Note: You may need to change the static map topic to `/turtlebot/map` to `/turtlebot/map_050` as appropriate
 ### Startup of Flexible Navigation
 
 Flexible Navigation requires startup of planning and control nodes, as well as the FlexBE behavior engine and UI.
+
 `roslaunch flex_nav_turtlebot_flexbe_behaviors flex_nav_turtlebot_behavior_testing.launch`
   * This starts the FlexBE engine and FlexBE App UI
 
@@ -104,7 +106,7 @@ Then start one (and only one) of the following:
 `roslaunch flex_nav_turtlebot_bringup flex.launch`
  * This starts the planning and control nodes.
  * This version uses a 2-level planner as a demonstration.
-  * The global planner plans over the full map, with sensor data
+  * The global planner plans over the full map at 0.050 resolution, with sensor data
   * The local planner plans over smaller window trying to follow the global path
 
 or
@@ -112,7 +114,7 @@ or
 `roslaunch flex_nav_turtlebot_bringup flex_multi_level.launch`
  * This starts the planning and control nodes.
  * This version uses a 3-level planner as a demonstration.
-  * The high-level planner is based only  on the static map with SBPL 0.100 meter resolution state lattice
+  * The high-level planner is based only on the static map with SBPL 0.100 meter resolution state lattice
   * The mid-level planner using only local obstacle sensing with SBPL 0.050 meter resolution state lattice
   * The low-level planner uses DWA with 0.025 resolution
 

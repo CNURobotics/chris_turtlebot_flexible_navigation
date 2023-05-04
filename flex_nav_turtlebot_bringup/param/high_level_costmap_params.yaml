@@ -4,7 +4,6 @@ high_level_costmap:
    robot_base_frame: base_footprint
    update_frequency:  0.5
    publish_frequency: 0.5
-   static_map: true
    transform_tolerance: 0.5
    resolution: 0.100
    # We will only plan globally based on given static map

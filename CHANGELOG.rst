@@ -1,6 +1,9 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package chris_turtlebot_flexible_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+0.2.1 Update for the latest Melodic updates (2023)
+   Re-enable gmapping
+---------------------
 0.2.0 Update for the latest Melodic updates (2019)
 ---------------------
 0.1.1 Update for the latest Kinetic updates (2019)
