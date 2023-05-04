@@ -51,13 +51,16 @@ The following directions are for a simple demonstration on a single ROS network.
   > state lattice planner(s).
 
   There are several options; choose **no more than one** of the following map options:
-  'roslaunch chris_turtlebot_navigation map_server_creech_world_100.launch'
+
+  `roslaunch chris_turtlebot_navigation map_server_creech_world_100.launch`
   * Launches map server with Creech world map at 0.1 meter cell resolution
+  * Use with `flex_multi_level.launch` below 
 
-  'roslaunch chris_turtlebot_navigation map_server_creech_world_050.launch'
+  `roslaunch chris_turtlebot_navigation map_server_creech_world_050.launch`
   * Launches map server with Creech world map at 0.050 meter cell resolution
+  * Use with `flex.launch` below 
 
-  'roslaunch chris_turtlebot_navigation map_server.launch'
+  `roslaunch chris_turtlebot_navigation map_server.launch`
   * Loads the map specified in the environment variable `CHRIS_TURTLEBOT_MAP_FILE`
 
   If using a SLAM system (e.g. gmapping or Cartographer), an external map server is not needed.
