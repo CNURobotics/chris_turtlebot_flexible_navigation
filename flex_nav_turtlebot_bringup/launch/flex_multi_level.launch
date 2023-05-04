@@ -15,31 +15,49 @@
   <group ns="$(arg robot_namespace)">
     <param name="tf_prefix"       value="$(arg robot_namespace)_tf"/>
 
-    <!-- Path Planning -->
+    <!-- High-level Planning using known map-->
     <node pkg="flex_nav_planners" type="flex_nav_planners_get_path_node" respawn="false" name="high_level_planner" output="screen">
-      <rosparam file="$(find flex_nav_turtlebot_bringup)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
-      <rosparam file="$(find flex_nav_turtlebot_bringup)/param/global_costmap_params.yaml" command="load" />
+      <rosparam file="$(find flex_nav_turtlebot_bringup)/param/costmap_common_params.yaml" command="load" ns="high_level_costmap" />
+      <rosparam file="$(find flex_nav_turtlebot_bringup)/param/high_level_costmap_params.yaml" command="load" />
       <rosparam file="$(arg custom_param_file)" command="load" />
       <param name="planner" value="SBPLLatticePlanner" />
-      <param name="SBPLLatticePlanner/primitive_filename"           value="$(find chris_turtlebot_navigation)/mprim/turtlebot_050.mprim" />
+      <param name="SBPLLatticePlanner/primitive_filename" value="$(find chris_turtlebot_navigation)/mprim/turtlebot_100.mprim" />
+      <param name="SBPLLatticePlanner/environment_type"             value="XYThetaLattice" />
+      <param name="SBPLLatticePlanner/planner_type"                 value="ARAPlanner" />
+      <param name="SBPLLatticePlanner/initial_epsilon"              value="5.0" />
+      <param name="SBPLLatticePlanner/allocated_time"               value="9.9" />
+      <param name="SBPLLatticePlanner/forward_search"               value="false" />
+      <param name="SBPLLatticePlanner/nominalvel_mpersecs"          value="1.0" /> <!-- allow heuristic to work with pre-calc costs -->
+      <param name="SBPLLatticePlanner/timetoturn45degsinplace_secs" value="1.0" /> <!-- allow heuristic to work with pre-calc costs -->
+      <remap from="odom" to="$(arg odom_topic)"/>
+      <remap from="scan" to="$(arg scan_topic)"/>
+
+    </node>
+
+    <!-- Mid-level planning with known map and local sensing-->
+    <node pkg="flex_nav_planners" type="flex_nav_planners_follow_path_node" respawn="false" name="mid_level_planner" output="screen">
+      <rosparam file="$(find flex_nav_turtlebot_bringup)/param/costmap_common_params.yaml" command="load" ns="mid_level_costmap" />
+      <rosparam file="$(find flex_nav_turtlebot_bringup)/param/mid_level_costmap_params.yaml" command="load" />
+      <rosparam file="$(arg custom_param_file)" command="load" />
+      <param name="planner" value="SBPLLatticePlanner" />
+      <!--We don't want this planner to terminate, so zero distance threshold;
+          let the low level planner terminate on reaching the goal.  -->
+      <param name="distance_threshold" value="0.0" /> <!--In number of cells -->
+      <param name="SBPLLatticePlanner/primitive_filename" value="$(find chris_turtlebot_navigation)/mprim/turtlebot_050.mprim" />
       <param name="SBPLLatticePlanner/environment_type"             value="XYThetaLattice" />
       <param name="SBPLLatticePlanner/planner_type"                 value="ARAPlanner" />
       <param name="SBPLLatticePlanner/initial_epsilon"              value="3.0" />
-      <param name="SBPLLatticePlanner/allocated_time"               value="9.9" />
+      <param name="SBPLLatticePlanner/allocated_time"               value="1.0" />
       <param name="SBPLLatticePlanner/forward_search"               value="false" />
       <param name="SBPLLatticePlanner/nominalvel_mpersecs"          value="1.0" />
       <param name="SBPLLatticePlanner/timetoturn45degsinplace_secs" value="1.0" />
       <remap from="odom" to="$(arg odom_topic)"/>
       <remap from="scan" to="$(arg scan_topic)"/>
 
-      <!-- reset frame_id parameters using user input data -->
-      <param name="global_costmap/global_frame"     value="$(arg robot_namespace)_tf/$(arg global_frame_id)"/>
-      <param name="global_costmap/robot_base_frame" value="$(arg robot_namespace)_tf/$(arg base_frame_id)"/>
-
     </node>
 
     <!-- Path Follower Control -->
-    <node pkg="flex_nav_controllers" type="flex_nav_controllers_follow_path_node" respawn="false" name="low_level_planner" output="screen">
+    <node pkg="flex_nav_controllers" type="flex_nav_controllers_follow_topic_node" respawn="false" name="low_level_planner" output="screen">
       <param name="controller_frequency" value="10.0" />
       <rosparam file="$(find flex_nav_turtlebot_bringup)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
       <rosparam file="$(find flex_nav_turtlebot_bringup)/param/local_costmap_params.yaml" command="load" />
@@ -50,10 +68,6 @@
       <remap from="scan" to="$(arg scan_topic)"/>
       <remap from="cmd_vel" to="stamped_cmd_vel_mux/input/navi"/>
 
-      <!-- reset frame_id parameters using user input data -->
-      <param name="local_costmap/global_frame"      value="$(arg robot_namespace)_tf/$(arg odom_frame_id)"/>
-      <param name="local_costmap/robot_base_frame"  value="$(arg robot_namespace)_tf/$(arg base_frame_id)"/>
-      <param name="DWAPlannerROS/global_frame_id"   value="$(arg robot_namespace)_tf/$(arg odom_frame_id)"/>
     </node>
 
   </group>

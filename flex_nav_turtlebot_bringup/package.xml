@@ -1,9 +1,9 @@
 
-<package>
+<package format="2">
   <name>flex_nav_turtlebot_bringup</name>
-  <version>0.2.0</version>
+  <version>0.2.1</version>
   <description>Setup to demonstrate the FlexBE-based flexible_navigation setup using the Kobuki turtlebot setup</description>
-  <maintainer email="david.conner@cnu.edu">David Conner</maintainer>
+  <maintainer email="robotics@cnu.edu">David Conner</maintainer>
   <license>BSD</license>
   <url type="website">  </url>
   <url type="repository"> </url>
@@ -12,19 +12,19 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <run_depend>tf</run_depend>
-  <run_depend>roscpp</run_depend>
-  <run_depend>sensor_msgs</run_depend>
-  <run_depend>move_base</run_depend>
-  <run_depend>map_server</run_depend>
-  <run_depend>amcl</run_depend>
-  <!--run_depend>gmapping</run_depend-->
-  <run_depend>chris_turtlebot_bringup</run_depend>
-  <run_depend>dwa_local_planner</run_depend>
-  <run_depend>flex_nav_planners</run_depend>
-  <run_depend>flex_nav_controllers</run_depend>
-  <run_depend>flex_nav_flexbe_states</run_depend>
-  <run_depend>flex_nav_turtlebot_flexbe_states</run_depend>
+  <depend>tf</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>move_base</depend>
+  <depend>map_server</depend>
+  <depend>amcl</depend>
+  <!--depend>gmapping</depend-->
+  <depend>chris_turtlebot_bringup</depend>
+  <depend>dwa_local_planner</depend>
+  <depend>flex_nav_planners</depend>
+  <depend>flex_nav_controllers</depend>
+  <depend>flex_nav_flexbe_states</depend>
+  <depend>flex_nav_turtlebot_flexbe_states</depend>
 
   <export>
 

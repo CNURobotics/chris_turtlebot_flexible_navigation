@@ -5,8 +5,7 @@
   <arg name="robot_namespace" default="turtlebot"/>
 
   <group ns="$(arg robot_namespace)">
-    <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch">
-    </include>
+    <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch"/>
   </group>
 
 </launch>

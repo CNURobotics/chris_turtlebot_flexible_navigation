@@ -6,9 +6,7 @@
 
   <group ns="$(arg robot_namespace)">
     <include file="$(find flexbe_app)/launch/flexbe_ocs.launch"/>
-    <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch">
-    </include>
-
+    <include file="$(find flexbe_onboard)/launch/behavior_onboard.launch"/>
   </group>
 
 </launch>

@@ -1,17 +1,17 @@
-<package>
+<package format="2">
   <name>flex_nav_turtlebot_flexbe_behaviors</name>
   <version>0.2.0</version>
   <description>
      Behaviors related to demonstration of flexible_navigation system using CHRISLab Kobuki Turtlebot
   </description>
-  <maintainer email="david.conner@cnu.edu">David Conner</maintainer>
+  <maintainer email="robotics@cnu.edu">David Conner</maintainer>
   <license>BSD</license>
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <run_depend>rospy</run_depend>
-  <run_depend>flex_nav_flexbe_states</run_depend>
-  <run_depend>flex_nav_turtlebot_flexbe_states</run_depend>
+  <depend>rospy</depend>
+  <depend>flex_nav_flexbe_states</depend>
+  <depend>flex_nav_turtlebot_flexbe_states</depend>
 
   <export>
     <flexbe_behaviors />
