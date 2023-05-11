@@ -32,9 +32,9 @@
       <remap from="odom" to="$(arg odom_topic)"/>
       <remap from="scan" to="$(arg scan_topic)"/>
 
-      <!-- reset frame_id parameters using user input data >
+      <!-- reset frame_id parameters using user input data -->
       <param name="high_level_costmap/global_frame"      value="$(arg robot_namespace)_tf/$(arg global_frame_id)"/>
-      <param name="high_level_costmap/robot_base_frame"  value="$(arg robot_namespace)_tf/$(arg base_frame_id)"/-->
+      <param name="high_level_costmap/robot_base_frame"  value="$(arg robot_namespace)_tf/$(arg base_frame_id)"/>
 
     </node>
 
