@@ -51,6 +51,7 @@ The following directions are for a simple demonstration on a single ROS network.
   > state lattice planner(s).
 
   There are several options; choose **no more than one** of the following map options:
+
   `roslaunch chris_turtlebot_navigation map_server_creech_world_100.launch`
   * Launches map server with Creech world map at 0.1 meter cell resolution
   * Use this with `flex_multi_level.launch` planner below
@@ -80,7 +81,9 @@ The following directions are for a simple demonstration on a single ROS network.
 `roslaunch chris_turtlebot_navigation amcl*.launch`
   * AMCL uses Adaptive Monte Carlo Localization with respect to a known map
   * Uses the launch file with a map corresponding to the Gazebo world (maps are located in common chris_world_models package)
-  * For example, to launch with the Creech world map use `roslaunch chris_turtlebot_navigation amcl_creech_world.launch`
+  * For example, to launch with the Creech world map use
+
+    `roslaunch chris_turtlebot_navigation amcl_creech_world.launch`
 
 `roslaunch chris_turtlebot_navigation gmapping_demo.launch`
   * This uses Simultaneous Localization and Mapping (SLAM) to build a map during navigation.

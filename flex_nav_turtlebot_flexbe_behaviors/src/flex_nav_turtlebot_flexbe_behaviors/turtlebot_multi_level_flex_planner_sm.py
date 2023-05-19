@@ -9,15 +9,15 @@
 
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
 from flex_nav_flexbe_states.clear_costmaps_state import ClearCostmapsState
-from flex_nav_flexbe_states.get_path_state import GetPathState
-from flexbe_states.operator_decision_state import OperatorDecisionState
 from flex_nav_flexbe_states.follow_path_state import FollowPathState
-from flex_nav_turtlebot_flexbe_states.turtlebot_status_state import TurtlebotStatusState
 from flex_nav_flexbe_states.follow_topic_state import FollowTopicState
-from flex_nav_turtlebot_flexbe_behaviors.turtlebot_simple_recovery_sm import TurtlebotSimpleRecoverySM
-from flexbe_states.log_state import LogState
+from flex_nav_flexbe_states.get_path_state import GetPathState
 from flex_nav_flexbe_states.get_pose_state import GetPoseState
 from flex_nav_flexbe_states.timed_stop_state import TimedStopState
+from flex_nav_turtlebot_flexbe_behaviors.turtlebot_simple_recovery_sm import TurtlebotSimpleRecoverySM
+from flex_nav_turtlebot_flexbe_states.turtlebot_status_state import TurtlebotStatusState
+from flexbe_states.log_state import LogState
+from flexbe_states.operator_decision_state import OperatorDecisionState
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
 
@@ -105,19 +105,6 @@ low-level: sensors only
                                         transitions={'done': 'Receive Goal', 'failed': 'failed'},
                                         autonomy={'done': Autonomy.Off, 'failed': Autonomy.Off})
 
-            # x:205 y:207
-            OperatableStateMachine.add('Receive Path',
-                                        GetPathState(planner_topic="high_level_planner"),
-                                        transitions={'planned': 'ExecutePlan', 'empty': 'Continue', 'failed': 'Continue'},
-                                        autonomy={'planned': Autonomy.Off, 'empty': Autonomy.Low, 'failed': Autonomy.Low},
-                                        remapping={'goal': 'goal', 'plan': 'plan'})
-
-            # x:218 y:342
-            OperatableStateMachine.add('ExecutePlan',
-                                        OperatorDecisionState(outcomes=["yes","no"], hint="Execute the current plan?", suggestion="yes"),
-                                        transitions={'yes': 'Container', 'no': 'Continue'},
-                                        autonomy={'yes': Autonomy.High, 'no': Autonomy.Full})
-
             # x:446 y:275
             OperatableStateMachine.add('Container',
                                         _sm_container_0,
@@ -131,17 +118,17 @@ low-level: sensors only
                                         transitions={'yes': 'Receive Goal', 'no': 'finished', 'recover': 'LogRecovery', 'clearcostmap': 'ClearCostmap'},
                                         autonomy={'yes': Autonomy.High, 'no': Autonomy.Full, 'recover': Autonomy.Full, 'clearcostmap': Autonomy.Full})
 
-            # x:1052 y:227
-            OperatableStateMachine.add('Turtlebot Simple Recovery',
-                                        self.use_behavior(TurtlebotSimpleRecoverySM, 'Turtlebot Simple Recovery'),
-                                        transitions={'finished': 'AutoReplan', 'failed': 'failed'},
-                                        autonomy={'finished': Autonomy.Inherit, 'failed': Autonomy.Inherit})
+            # x:436 y:389
+            OperatableStateMachine.add('EStop',
+                                        TimedStopState(timeout=0.25, cmd_topic='stamped_cmd_vel_mux/input/navi', odom_topic='mobile_base/odom'),
+                                        transitions={'done': 'Log Fail', 'failed': 'Log Fail'},
+                                        autonomy={'done': Autonomy.Off, 'failed': Autonomy.Off})
 
-            # x:664 y:307
-            OperatableStateMachine.add('Log Success',
-                                        LogState(text="Success!", severity=Logger.REPORT_HINT),
-                                        transitions={'done': 'Continue'},
-                                        autonomy={'done': Autonomy.Off})
+            # x:218 y:342
+            OperatableStateMachine.add('ExecutePlan',
+                                        OperatorDecisionState(outcomes=["yes","no"], hint="Execute the current plan?", suggestion="yes"),
+                                        transitions={'yes': 'Container', 'no': 'Continue'},
+                                        autonomy={'yes': Autonomy.High, 'no': Autonomy.Full})
 
             # x:664 y:374
             OperatableStateMachine.add('Log Fail',
@@ -153,6 +140,18 @@ low-level: sensors only
             OperatableStateMachine.add('Log Recovered',
                                         LogState(text="Re-plan after recovery", severity=Logger.REPORT_HINT),
                                         transitions={'done': 'New Plan'},
+                                        autonomy={'done': Autonomy.Off})
+
+            # x:664 y:307
+            OperatableStateMachine.add('Log Success',
+                                        LogState(text="Success!", severity=Logger.REPORT_HINT),
+                                        transitions={'done': 'Continue'},
+                                        autonomy={'done': Autonomy.Off})
+
+            # x:887 y:236
+            OperatableStateMachine.add('LogRecovery',
+                                        LogState(text="Starting recovery behavior", severity=Logger.REPORT_HINT),
+                                        transitions={'done': 'Turtlebot Simple Recovery'},
                                         autonomy={'done': Autonomy.Off})
 
             # x:772 y:71
@@ -169,29 +168,30 @@ low-level: sensors only
                                         autonomy={'done': Autonomy.Low},
                                         remapping={'goal': 'goal'})
 
+            # x:205 y:207
+            OperatableStateMachine.add('Receive Path',
+                                        GetPathState(planner_topic="high_level_planner"),
+                                        transitions={'planned': 'ExecutePlan', 'empty': 'Continue', 'failed': 'Continue'},
+                                        autonomy={'planned': Autonomy.Off, 'empty': Autonomy.Low, 'failed': Autonomy.Low},
+                                        remapping={'goal': 'goal', 'plan': 'plan'})
+
             # x:866 y:374
             OperatableStateMachine.add('Recover',
                                         OperatorDecisionState(outcomes=["yes","no"], hint="Should we attempt recovery?", suggestion="yes"),
                                         transitions={'yes': 'LogRecovery', 'no': 'finished'},
                                         autonomy={'yes': Autonomy.High, 'no': Autonomy.Full})
 
-            # x:887 y:236
-            OperatableStateMachine.add('LogRecovery',
-                                        LogState(text="Starting recovery behavior", severity=Logger.REPORT_HINT),
-                                        transitions={'done': 'Turtlebot Simple Recovery'},
-                                        autonomy={'done': Autonomy.Off})
+            # x:1052 y:227
+            OperatableStateMachine.add('Turtlebot Simple Recovery',
+                                        self.use_behavior(TurtlebotSimpleRecoverySM, 'Turtlebot Simple Recovery'),
+                                        transitions={'finished': 'AutoReplan', 'failed': 'failed'},
+                                        autonomy={'finished': Autonomy.Inherit, 'failed': Autonomy.Inherit})
 
             # x:875 y:162
             OperatableStateMachine.add('AutoReplan',
                                         OperatorDecisionState(outcomes=["yes","no"], hint="Re-plan to current goal?", suggestion="yes"),
                                         transitions={'yes': 'Log Recovered', 'no': 'Continue'},
                                         autonomy={'yes': Autonomy.High, 'no': Autonomy.Full})
-
-            # x:453 y:376
-            OperatableStateMachine.add('EStop',
-                                        TimedStopState(timeout=0.25, cmd_topic='stamped_cmd_vel_mux/input/navi', odom_topic='mobile_base/odom'),
-                                        transitions={'done': 'Log Fail', 'failed': 'Log Fail'},
-                                        autonomy={'done': Autonomy.Off, 'failed': Autonomy.Off})
 
 
         return _state_machine
